@@ -1,0 +1,25 @@
+#### 题目描述
+假设一个单调递增的数组里的每个元素都是整数并且是唯一的。找出数组中任意一个数值等于其下标的元素
+#### 算法解析
+1. 如果第i个数字的值大于i，那么它右边的数字都大于对应的下标
+2. 如果第i个数字的值小于i，那么它右边的数字都小于对应的下标
+
+根据这个特点，使用二分查找法进行求解
+```
+public int getNumberSameAsIndex(int[] number){
+    if(number == null || number.length <=0)
+        return -1;
+    int left=0;
+    int right=number.length-1;
+    while(left<=right){
+        int mid=(left+right)>>1;
+        if(number[mid] == mid)
+            return mid;
+        if(number[mid] > mid)
+            right=mid-1;
+        else
+            left=mid+1;
+    }
+    return -1;
+}
+```
