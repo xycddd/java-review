@@ -1,4 +1,4 @@
-**注：** 横线下面的答案来自牛客网的题解或者讨论区
+**注：** 横线下面的答案来自牛客网的题解或者讨论区<br>
 查找最晚入职员工的所有信息
 ```
 select * from employees where hire_date = (select max(hire_date) from employees);
