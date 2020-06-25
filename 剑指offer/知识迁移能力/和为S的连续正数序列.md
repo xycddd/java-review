@@ -40,3 +40,35 @@ public static ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
         return res;
     }
 ```
+中文版
+```
+class Solution {
+public:
+    vector<vector<int>> findContinuousSequence(int target) {
+        vector<vector<int>> res;
+        int mid=(1+target)/2;
+        int small=1,big=2;
+        int sum=small+big;
+        vector<int> ans{1,2};
+        while(small<mid){
+            if(sum<target){
+                big++;
+                ans.push_back(big);
+                sum+=big;
+            }
+            else if(sum == target){
+                res.push_back(ans);
+                ans.erase(ans.begin());
+                sum-=small;
+                small++;
+            }else{
+                sum-=small;
+                small++;
+                ans.erase(ans.begin());
+            }
+        }
+        return res;
+
+    }
+};
+```
