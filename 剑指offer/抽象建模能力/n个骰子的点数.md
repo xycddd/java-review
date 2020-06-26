@@ -1,6 +1,11 @@
 #### 题目描述
 把n个筛子仍在地上，所有筛子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率
 #### 算法解析
+中文版给的解析地址<br>
+https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/solution/nge-tou-zi-de-dian-shu-dong-tai-gui-hua-ji-qi-yo-3/
+```
+```
+
 解法一：基于递归的解法<br>
 可以先将筛子分成两堆，第一堆只有一个，另一堆有n-1个。单独的那一堆可能出现1-6中的任意一个数字，需要计算1-6的每一种点数和剩下的n-1个骰子来计算点数和
 ```
