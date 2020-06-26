@@ -2,8 +2,34 @@
 把n个筛子仍在地上，所有筛子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率
 #### 算法解析
 中文版给的解析地址<br>
-https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/solution/nge-tou-zi-de-dian-shu-dong-tai-gui-hua-ji-qi-yo-3/
+解法来自https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/solution/nge-tou-zi-de-dian-shu-dong-tai-gui-hua-ji-qi-yo-3/
 ```
+class Solution {
+public:
+    vector<double> twoSum(int n) {
+        vector<vector<int>> dp(n+1,vector<int>(6*n+1));
+        for (int i = 1; i <= 6; i ++) {
+            dp[1][i] = 1;
+        }
+        for (int i = 2; i <= n; i ++) {
+            for (int j = i; j <= 6*i; j ++) {
+                for (int cur = 1; cur <= 6; cur ++) {
+                    if (j - cur <= 0) {
+                        break;
+                    }
+                    dp[i][j] += dp[i-1][j-cur];
+                }
+            }
+        }
+        int all = pow(6, n);
+        vector<double> res;
+        for (int i = n; i <= 6 * n; i ++) {
+            res.push_back(dp[n][i] * 1.0 / all);
+        }
+        return res;
+    }
+
+};
 ```
 
 解法一：基于递归的解法<br>
