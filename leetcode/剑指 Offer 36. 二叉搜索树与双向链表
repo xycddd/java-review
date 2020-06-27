@@ -1,0 +1,58 @@
+原题是变为二叉链表，本题改动为二叉循环链表
+
+```
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val,Node _left,Node _right) {
+        val = _val;
+        left = _left;
+        right = _right;
+    }
+};
+*/
+class Solution {
+    Node next=null;
+    public Node treeToDoublyList(Node root) {
+        if(root==null)
+            return null;
+        dfs(root);
+        Node head= next;
+        while(head!= null && head.left!=null)
+            head=head.left;
+        // 添加的两句代码，设置头节点的左指针指向尾节点，设置尾节点的右指针指向头节点
+        next.right=head;
+        head.left=next;
+        return head;
+    }
+    private void dfs(Node root){
+        if(root==null){
+            return ;
+        }
+
+        if(root!=null){
+            dfs(root.left);
+        }
+        root.left=next;
+        if(next!=null)
+            next.right=root;
+        next=root;
+
+        if(root.right!=null){
+            dfs(root.right);
+        }
+    }
+
+
+}
+```
