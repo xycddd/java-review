@@ -16,6 +16,10 @@ n = 10, 我选择了8.<br>
 给定 n ≥ 1，计算你至少需要拥有多少现金才能确保你能赢得这个游戏。<br>
 
 链接：https://leetcode-cn.com/problems/guess-number-higher-or-lower-ii<br>
+
+#### 算法解析
+https://leetcode-cn.com/problems/guess-number-higher-or-lower-ii/solution/dong-tai-gui-hua-c-you-tu-jie-by-zhang-xiao-tong-2/
+
 ```
 class Solution {
 public:
