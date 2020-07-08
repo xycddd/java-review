@@ -23,7 +23,7 @@
 
 链接：https://leetcode-cn.com/problems/ones-and-zeroes<br>
 
-####算法解析
+#### 算法解析
 https://leetcode-cn.com/problems/ones-and-zeroes/solution/dong-tai-gui-hua-zhuan-huan-wei-0-1-bei-bao-wen-ti/
 ```
 class Solution {
