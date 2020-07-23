@@ -1,0 +1,60 @@
+返回 A 的最短的非空连续子数组的长度，该子数组的和至少为 K 。如果没有和至少为 K 的非空子数组，返回 -1 。
+
+**示例 1：**<br>
+
+输入：A = [1], K = 1<br>
+输出：1<br>
+**示例 2：**<br>
+
+输入：A = [1,2], K = 4<br>
+输出：-1<br>
+**示例 3：**<br>
+
+输入：A = [2,-1,2], K = 3<br>
+输出：3<br>
+
+来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k<br>
+#### 算法解析
+详情参见大佬https://www.cnblogs.com/grandyang/p/11300071.html
+```
+class Solution {
+public:
+    int shortestSubarray(vector<int>& A, int K) {
+        int n = A.size(), res = INT_MAX, sum = 0;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        for (int i = 0; i < n; ++i) {
+            sum += A[i];
+            if (sum >= K) res = min(res, i + 1);
+            while (!pq.empty() && sum - pq.top().first >= K) {
+                res = min(res, i - pq.top().second);
+                pq.pop();
+            }
+            pq.push({sum, i});
+        }
+        return res == INT_MAX ? -1 : res;
+    }
+};
+```
+```
+class Solution {
+public:
+    int shortestSubarray(vector<int>& A, int K) {
+        int n = A.size(), res = INT_MAX;
+        deque<int> dq;
+        vector<int> sums(n + 1);
+        for (int i = 1; i <= n; ++i) sums[i] = sums[i - 1] + A[i - 1];
+        for (int i = 0; i <= n; ++i) {
+            while (!dq.empty() && sums[i] - sums[dq.front()] >= K) {
+                res = min(res, i - dq.front());
+                dq.pop_front();
+            }
+            while (!dq.empty() && sums[i] <= sums[dq.back()]) {
+                dq.pop_back();
+            }
+            dq.push_back(i);
+        }
+        return res == INT_MAX ? -1 : res;
+    }
+};
+```
